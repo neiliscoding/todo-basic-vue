@@ -2,11 +2,11 @@
 
     <div class="container-fluid">
       <h1 class="mt-4 mb-4">Todo List</h1>
-      <p>{{ todos }}</p>
-      <ul v-for="todo in todos" :key="todo.name" class="list-group" >
-        <li class="list-group-item">
+      <!-- <p>{{ todos }}</p> -->
+      <ul class="list-group" >
+        <li class="list-group-item" v-for="(todo, index) in todos" :key="todo.name"  v-bind:class="{active: ! todo.done}">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="formCheck-1" v-model="todo.done" /><label class="form-check-label" for="formCheck-1">{{ todo.text }}</label>
+            <input class="form-check-input" type="checkbox" v-bind:id="'formCheck-1' + index" v-model="todo.done" /><label class="form-check-label" for="formCheck-1">{{ todo.text }}</label>
           </div>
         </li>
       </ul>
@@ -20,7 +20,7 @@
         </div>
         </form>
       <div class="form-check ps-4 ms-3">
-        <input class="form-check-input" type="checkbox" id="formCheck-4" /><label class="form-check-label" for="formCheck-4">Show completed items?</label>
+        <input class="form-check-input" type="checkbox" id="formCheck-4" checked /><label class="form-check-label" for="formCheck-4">Show completed items?</label>
       </div>
     </div>
 </template>
