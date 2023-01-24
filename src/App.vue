@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <ToDoList></ToDoList>
+    <ToDoList :state="state"></ToDoList>
 
   </div>
 </template>
@@ -12,6 +12,25 @@ export default {
   name: "App",
   components: {
     ToDoList,
+  },
+  data() {
+    return {
+      state: {
+        showDone: true,
+        todos : [
+          {
+            text: "Create mockups in figma",
+            done: true,
+          },          {
+            text: "Create HTML prototype",
+            done: false,
+          },          {
+            text: "Discuss reusable component strategy with PO",
+            done: false,
+          }
+        ]
+      }
+    }
   },
 };
 </script>

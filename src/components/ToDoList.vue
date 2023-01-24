@@ -2,20 +2,11 @@
 
     <div class="container-fluid">
       <h1 class="mt-4 mb-4">Todo List</h1>
-      <ul class="list-group" style="border-radius: 1em">
+      <!-- <p>{{ todos }}</p> -->
+      <ul v-for="todo in todos" :key="todo.name" class="list-group" >
         <li class="list-group-item">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="formCheck-1" /><label class="form-check-label" for="formCheck-1">Label</label>
-          </div>
-        </li>
-        <li class="list-group-item">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="formCheck-2" /><label class="form-check-label" for="formCheck-2">Label</label>
-          </div>
-        </li>
-        <li class="list-group-item">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="formCheck-3" /><label class="form-check-label" for="formCheck-3">Label</label>
+            <input class="form-check-input" type="checkbox" id="formCheck-1" v-model="todo.done" /><label class="form-check-label" for="formCheck-1">{{ todo.text }}</label>
           </div>
         </li>
       </ul>
@@ -35,14 +26,12 @@
 
   export default  {
     name: 'to-do-list',
-    props: [],
+    props: ['state'],
     mounted () {
 
     },
     data () {
-      return {
-
-      }
+      return this.$props.state;
     },
     methods: {
 
