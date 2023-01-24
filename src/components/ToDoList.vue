@@ -2,7 +2,7 @@
 
     <div class="container-fluid">
       <h1 class="mt-4 mb-4">Todo List</h1>
-      <!-- <p>{{ todos }}</p> -->
+      <p>{{ todos }}</p>
       <ul v-for="todo in todos" :key="todo.name" class="list-group" >
         <li class="list-group-item">
           <div class="form-check">
@@ -10,12 +10,15 @@
           </div>
         </li>
       </ul>
-      <div class="input-group mt-3 mb-3">
-        <input class="form-control" type="text" placeholder="Add a new thing to do here..." style="border-top-left-radius: 1em; border-bottom-left-radius: 1em" /><button class="btn btn-primary"
-          type="button" style="border-top-right-radius: 1em; border-bottom-right-radius: 1em">
-          <i class="fas fa-plus me-2"></i>Add
-        </button>
-      </div>
+      <form v-on:submit="handleAddTodo($event)">
+        <div class="input-group mt-3 mb-3">
+          <input v-model="input" class="form-control" type="text" placeholder="Add a new thing to do here..." style="border-top-left-radius: 1em; border-bottom-left-radius: 1em" />
+          <button class="btn btn-primary"
+            type="submit" style="border-top-right-radius: 1em; border-bottom-right-radius: 1em">
+            <i class="fas fa-plus me-2"></i>Add
+          </button>
+        </div>
+        </form>
       <div class="form-check ps-4 ms-3">
         <input class="form-check-input" type="checkbox" id="formCheck-4" /><label class="form-check-label" for="formCheck-4">Show completed items?</label>
       </div>
@@ -34,7 +37,11 @@
       return this.$props.state;
     },
     methods: {
-
+      handleAddTodo(event) {
+        event.preventDefault();
+        this.$data.todos.push({text:this.input, done:false});
+        this.input = "";
+      }
     },
     computed: {
 
