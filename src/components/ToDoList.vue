@@ -54,9 +54,3 @@
 
 
 </script>
-
-<style scoped>
-  .to-do-list {
-
-  }
-</style>
